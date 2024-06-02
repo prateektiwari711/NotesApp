@@ -11,8 +11,8 @@ const notes = JSON.parse(localStorage.getItem("notes")) || [];
 let isUpdate = false, updateId;
 
 function showNotes() {
-    document.querySelectorAll('.notes').forEach(note => note.remove()); 
-    if (notes.length > 0) {
+    document.querySelectorAll('.notes').forEach(note => note.remove());
+    if (notes && notes.length > 0) {
         notes.forEach((note, index) => {
             let liTag = `<li class="notes">
                 <div class="details">
