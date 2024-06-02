@@ -1,18 +1,22 @@
 const addBox = document.querySelector(".add-box");
 const popBox = document.querySelector(".popup-box");
-const popTitle = popBox.querySelector("header p");
+const popTitle= popBox.querySelector("header p");
 const closeIcon = document.querySelector("header i");
 const titleTag = document.querySelector("input");
 const descTag = document.querySelector("textarea");
 const addBtn = document.querySelector("form button");
 
+// Check if "notes" exists in local storage, parse it, or set it as an empty array if null
 const notes = JSON.parse(localStorage.getItem("notes")) || [];
 
 let isUpdate = false, updateId;
 
 function showNotes() {
-    document.querySelectorAll('.notes').forEach(note => note.remove());
-    if (notes && notes.length > 0) {
+    // Clear existing notes
+    document.querySelectorAll('.notes').forEach(note => note.remove()); 
+
+    // Display notes
+    if (notes.length > 0) {
         notes.forEach((note, index) => {
             let liTag = `<li class="notes">
                 <div class="details">
