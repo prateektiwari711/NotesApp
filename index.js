@@ -6,7 +6,7 @@ const titleTag = document.querySelector("input");
 const descTag = document.querySelector("textarea");
 const addBtn = document.querySelector("form button");
 
-const notes=JSON.parse(localStorage.getItem("notes" || "{}"));
+const notes=JSON.parse(localStorage.getItem("notes" || "[]"));
 
 let isUpdate=false,updateId;
 
