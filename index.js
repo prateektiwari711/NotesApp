@@ -90,14 +90,15 @@ addBtn.addEventListener("click", (e) => {
   if(noteTitle || noteDesc){
     let dateObj = new Date(),
     noteDate = dateObj.toLocaleDateString();
-    let noteInfo ={};
-       noteInfo={
+    let noteInfo ={
         title: noteTitle,
         description: noteDesc,
         date: noteDate,
       };
       if(!isUpdate){
+        if(noteInfo){
         notes.push(noteInfo);
+        }
       }
       else{
         isUpdate=false;
