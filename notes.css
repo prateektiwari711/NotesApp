@@ -1,0 +1,272 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #212121;
+    color:rgb(236, 228, 171);
+}
+
+#navbar{
+    background: rgb(236, 228, 171);
+    color: rgb(85, 0, 0);
+    padding: 10px;
+    margin: 0;
+}
+
+.wrapper{
+    margin: 50px;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, 265px);
+}
+
+.wrapper li{
+    background-color:rgb(236, 228, 171); 
+    color: #212121;
+    list-style: none;
+    height: 250px;
+    padding: 15px 20px 20px;
+    border-radius: 5px;
+}
+
+.add-box, .icon, .bottom-content, .menu li, .content header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 32px;
+}
+
+.add-box{
+    flex-flow: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-box i{
+    border: 2px dashed #212121;
+    border-radius: 50%;
+    font-size: 42px;
+    padding: 5px;
+    color: rgb(85, 0, 0);
+}
+
+.add-box p{
+    margin-top: 20px;
+    color: rgb(85, 0, 0);
+    font-weight: 550;
+}
+
+.wrapper .notes{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.notes .details{
+    max-height: 165px;
+    overflow-y: auto;
+}
+
+.note .details::-webkit-scrollbar,
+.popup textarea::-webkit-scrollbar{
+  width: 0;
+}
+.note .details:hover::-webkit-scrollbar,
+.popup textarea:hover::-webkit-scrollbar{
+  width: 5px;
+}
+.note .details:hover::-webkit-scrollbar-track,
+.popup textarea:hover::-webkit-scrollbar-track{
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+.note .details:hover::-webkit-scrollbar-thumb,
+.popup textarea:hover::-webkit-scrollbar-thumb{
+  background: #e6e6e6;
+  border-radius: 25px;
+}
+
+.notes p{
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(85, 0, 0);
+}
+
+.notes span{
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+    color: #212121;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+
+.bottom-content{
+    padding-top: 10px;
+    border-top: 1px solid rgb(85, 0, 0);
+    bottom: 0;
+}
+
+.bottom-content span{
+    color: rgb(85, 0, 0);
+}
+
+.bottom-content .settings{
+    position: relative;
+}
+
+.bottom-content .settings i{
+    margin-left: 20px;
+    cursor: pointer;
+    z-index: 0;
+}
+
+.settings .menu{
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    border-radius: 4px;
+    right: -5px;
+    padding: 5px 0px;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition:transform 0.2s ease;
+}
+
+.settings.show:hover .menu{
+    transform: scale(1);
+} 
+
+.settings .menu li{
+    height: 25px;
+    bottom: 0;
+    font-size: 14px;
+    border-radius: 0;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+
+.menu li:hover{
+    background: rgb(85, 0, 0);
+    color: rgb(236, 228, 171); 
+}
+
+.menu li i{
+    padding-right: 8px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.popup-box{
+    position: fixed;
+    top: 10;
+    left: 0;
+    background:rgb(251, 246, 203,0.8) ;
+    color: #212121; 
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+}
+
+.popup-box .popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 400px;
+    width: 100%;
+    transform: translate(-50%,-50%);
+}
+
+.popup-box, .popup-box .popup{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+}
+
+.popup-box.show, .popup-box.show .popup{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup-box .popup .content{
+    background: #fff;
+    border-radius: 5px;
+}
+
+.content header{
+    padding: 5px 20px;
+    border-bottom: 1px solid #cccc;
+}
+
+.content header i{
+    cursor: pointer;
+    font-size: 28px;
+    right:0;
+}
+
+.content form{
+    display: flex;
+    flex-flow: column;
+    padding: 15px;
+}
+
+.content form .row-title,.row-description{
+    display: flex;
+    flex-flow: column;
+    padding-top: 0 15px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.content form label{
+    margin-bottom: 5px;
+}
+
+form .row-title input{
+    background:  rgb(248, 225, 144);
+    outline: none;
+    font-size: 16px;
+    height: 40px;
+    padding: 0 10px;
+}
+
+form .row-description textarea{
+    background: rgb(248, 225, 144);
+    font-size: 16px;
+    outline: none;
+    resize: none;
+    height: 200px;
+    padding: 0 10px;
+}
+
+.content form button{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    background: #212121;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+@media (max-width: 660px){
+    .wrapper{
+      margin: 15px;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fill, 100%);
+    }
+    .popup-box .popup{
+      max-width: calc(100% - 15px);
+    }
+    .bottom-content .settings i{
+      font-size: 17px;
+    }
+  }
