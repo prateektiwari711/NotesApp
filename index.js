@@ -11,6 +11,7 @@ const notes=JSON.parse(localStorage.getItem("notes" || "{}"));
 let isUpdate=false,updateId;
 
 function showNotes(){
+     if(notes){
     notes.forEach((note,index)=>{
         let liTag=`<li class="notes">
                 <div class="details">
@@ -30,6 +31,7 @@ function showNotes(){
             </li>`;
         addBox.insertAdjacentHTML('afterend',liTag);
     });
+}
 }
 
 showNotes();
