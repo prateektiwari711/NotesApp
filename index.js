@@ -10,10 +10,11 @@ const notes=JSON.parse(localStorage.getItem("notes" || "[]"));
 
 let isUpdate=false,updateId;
 
-function showNotes(){
-     if(notes){
-    notes.forEach((note,index)=>{
-        let liTag=`<li class="notes">
+function showNotes() {
+    document.querySelectorAll('.notes').forEach(note => note.remove()); // Clear existing notes
+    if (notes.length > 0) {
+        notes.forEach((note, index) => {
+            let liTag = `<li class="notes">
                 <div class="details">
                     <p>${note.title}</p>
                     <span>${note.description}</span>
@@ -21,18 +22,19 @@ function showNotes(){
                 <div class="bottom-content">
                     <span>${note.date}</span>
                     <div class="settings">
-                        <i onClick="showMenu(this)" class="bi bi-three-dots""></i>
+                        <i onClick="showMenu(this)" class="bi bi-three-dots"></i>
                         <ul class="menu">
-                            <li onClick="updateNote(${index},'${note.title}','${note.description}')"><i class="bi bi-pencil-fill"></i></i>Edit</li>
+                            <li onClick="updateNote(${index},'${note.title}','${note.description}')"><i class="bi bi-pencil-fill"></i>Edit</li>
                             <li onClick="deleteNote(${index})"><i class="bi bi-trash"></i>Delete</li>
                         </ul>
                     </div>
                 </div>
             </li>`;
-        addBox.insertAdjacentHTML('afterend',liTag);
-    });
+            addBox.insertAdjacentHTML('afterend', liTag);
+        });
+    }
 }
-}
+
 
 showNotes();
 
@@ -90,8 +92,8 @@ addBtn.addEventListener("click", (e) => {
   if(noteTitle || noteDesc){
     let dateObj = new Date(),
     noteDate = dateObj.toLocaleDateString();
-    let noteInfo =[];
-       noteInfo={
+    let noteInfo = [];
+        noteInfo={
         title: noteTitle,
         description: noteDesc,
         date: noteDate,
