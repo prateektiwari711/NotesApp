@@ -1,6 +1,6 @@
 const addBox = document.querySelector(".add-box");
 const popBox = document.querySelector(".popup-box");
-const popTitle= popBox.querySelector("header p");
+const popTitle = popBox.querySelector("header p");
 const closeIcon = document.querySelector("header i");
 const titleTag = document.querySelector("input");
 const descTag = document.querySelector("textarea");
@@ -18,7 +18,9 @@ function showNotes() {
     // Display notes
     if (notes.length > 0) {
         notes.forEach((note, index) => {
-            let liTag = `<li class="notes">
+            let liTag = document.createElement('li');
+            liTag.className = 'notes';
+            liTag.innerHTML = `
                 <div class="details">
                     <p>${note.title}</p>
                     <span>${note.description}</span>
@@ -26,15 +28,28 @@ function showNotes() {
                 <div class="bottom-content">
                     <span>${note.date}</span>
                     <div class="settings">
-                        <i onClick="showMenu(this)" class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots"></i>
                         <ul class="menu">
-                            <li onClick="updateNote(${index},'${note.title}','${note.description.replaceAll('\n', '<br/>')}')"><i class="bi bi-pencil-fill"></i>Edit</li>
-                            <li onClick="deleteNote(${index})"><i class="bi bi-trash"></i>Delete</li>
+                            <li><i class="bi bi-pencil-fill"></i>Edit</li>
+                            <li><i class="bi bi-trash"></i>Delete</li>
                         </ul>
                     </div>
                 </div>
-            </li>`;
-            addBox.insertAdjacentHTML('afterend', liTag);
+            `;
+
+            addBox.insertAdjacentElement('afterend', liTag);
+
+            // Attach event listeners
+            const threeDotsIcon = liTag.querySelector('.bi-three-dots');
+            threeDotsIcon.addEventListener('click', () => showMenu(threeDotsIcon));
+
+            const editButton = liTag.querySelector('.menu li:first-child');
+            editButton.addEventListener('click', () => updateNote(
+                index, note.title, note.description.replaceAll('\n', '<br/>')
+            ));
+
+            const deleteButton = liTag.querySelector('.menu li:last-child');
+            deleteButton.addEventListener('click', () => deleteNote(index));
         });
     }
 }
@@ -44,10 +59,10 @@ showNotes();
 function showMenu(elem) {
     elem.parentElement.classList.add("show");
     document.addEventListener('click', e => {
-        if (e.target.tagName != 'I' || e.target != elem) {
+        if (e.target.tagName !== 'I' || e.target !== elem) {
             elem.parentElement.classList.remove("show");
         }
-    });
+    }, { once: true });
 }
 
 function deleteNote(noteId) {
